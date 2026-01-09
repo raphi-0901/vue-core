@@ -2394,11 +2394,9 @@ function baseCreateRenderer(
 
   let isFlushing = false
   const render: RootRenderFunction = (vnode, container, namespace) => {
-    let instance
     if (vnode == null) {
       if (container._vnode) {
         unmount(container._vnode, null, null, true)
-        instance = container._vnode.component
       }
     } else {
       patch(
@@ -2414,7 +2412,7 @@ function baseCreateRenderer(
     container._vnode = vnode
     if (!isFlushing) {
       isFlushing = true
-      flushPreFlushCbs(instance)
+      flushPreFlushCbs()
       flushPostFlushCbs()
       isFlushing = false
     }
