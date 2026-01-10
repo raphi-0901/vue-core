@@ -470,6 +470,11 @@ function removeDep(link: Link) {
   }
 }
 
+export interface ReactiveEffectRunner<T = any> {
+  (): T
+  effect: ReactiveEffect
+}
+
 export function effect<T = any>(
   fn: () => T,
   options?: ReactiveEffectOptions,
